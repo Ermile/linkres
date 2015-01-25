@@ -1,0 +1,76 @@
+html {height: 100%}
+body {
+  background: -webkit-linear-gradient(30deg, #B993D6 10%, #8CA6DB 90%);
+  background:    -moz-linear-gradient(30deg, #B993D6 10%, #8CA6DB 90%);
+  background:     -ms-linear-gradient(30deg, #B993D6 10%, #8CA6DB 90%);
+  background:      -o-linear-gradient(30deg, #B993D6 10%, #8CA6DB 90%);
+  background:         linear-gradient(30deg, #B993D6 10%, #8CA6DB 90%);
+}
+@media (min-width: 768px) {}
+@media (min-width: 992px) {}
+@media (min-width: 1200px) {}
+
+.form-element.url {
+  width: 500px;
+  margin: 0 auto;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.24);
+}
+
+.form-element.url:focus, .form-element.url:hover{
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.24);
+}
+
+.form-element.url #url {
+  display: block;
+  width: inherit;
+  margin: 50% auto 15px;
+  background-color: #fff;
+  border: none;
+  box-shadow: none;
+  font-size: 16px;
+  font-family: 'Roboto Slab';
+  padding: 10px 15px;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.12);
+  border-radius: 2px; 
+}
+
+.form-element.url #url:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.form-element.submit {
+  width: 500px;
+  margin: 0 auto;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.24);
+}
+
+.form-element.submit:focus, .form-element.submit:hover{
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.24);
+}
+
+.form-element.submit #submit {
+  display: block;
+  width: inherit;
+  border: none;
+  box-shadow: none;
+  font-size: 16px;
+  font-family: 'Roboto Slab';
+  padding: 7px 15px;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.12);
+  border-radius: 2px; 
+}
+/*
+.xxx {
+  margin: 100px auto;
+  width: 500px;
+  height: 50px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.24);
+}
+
+.xxx .xx {
+   background-color: white;
+  width: 500px;
+  height: 50px;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.12);
+}*/
