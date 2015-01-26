@@ -10,11 +10,11 @@ class view extends \lib\view
 		$this->include->js             = false;
 
 
-		$this->data->site['title']   = T_("Ermile");
-		$this->data->site['desc']    = T_("Ermile is new");
-		$this->data->site['slogan']  = T_("Ermile is our company");
+		$this->data->site['title']   = T_("Linkres");
+		$this->data->site['desc']    = T_("link shorter is a part of ermile project");
+		$this->data->site['slogan']  = T_("we short all:)");
 
-		$this->data->page['desc']    = T_("Ermile is Inteligent.");
+		$this->data->page['desc']    = T_("link res is a link shorter service in ermile project");
 
 		// add language list for use in display
 		$this->global->langlist		= array(
