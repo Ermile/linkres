@@ -96,6 +96,7 @@ function setproperty($_arg)
 		case 'bigint':
 		case 'decimal':
 		case 'float':
+		case 'bit':
 			$tmp[0] 	= "->type('number')";
 			if($fieldname === 'barcode' || substr($type, strlen($type)-8) == "zerofill")
 			{

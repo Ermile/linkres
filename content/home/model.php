@@ -3,66 +3,107 @@ namespace content\home;
 use \lib\utility;
 use \lib\debug;
 
-class model extends \mvc\model{
-	public function post_url($object){
-		$chars = array(
-			str_split("xcCtfmwJ3T5HDjPVmRzy72hTJAMmF8LBLHpymaJt5PCYa5vc"),
-			str_split("w4vf2TFNP8Blhr4aYpVcFb96EAvyMEBBj5nefxvXntK7RNAE"),
-			str_split("YFMDcnd4kPw9dHYN6ymBTd62y4nALpZDjZmVBDa8zVXeHDZx")
-			);
+class model extends \mvc\model
+{
+	/**
+	 * ShortURL: Bijective conversion between natural numbers (IDs) and short strings
+	 *
+	 * ShortURL::encode() takes an ID and turns it into a short string
+	 * ShortURL::decode() takes a short string and turns it into an ID
+	 *
+	 * Features:
+	 * + large alphabet (51 chars) and thus very short resulting strings
+	 * + proof against offensive words (removed 'a', 'e', 'i', 'o' and 'u')
+	 * + unambiguous (removed 'I', 'l', '1', 'O' and '0')
+	 *
+	 * Example output:
+	 * 123456789 <=> pgK8p
+	 *
+	 * Source: https://github.com/delight-im/ShortURL (Apache License 2.0)
+	 */
+    const ALPHABET = '23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ';
+    const BASE     = "49"; // strlen(self::ALPHABET);
+    public static function encode($num)
+    {
+        $str = '';
+        while ($num > 0) {
+            $str = substr(self::ALPHABET, ($num % self::BASE), 1) . $str;
+            $num = floor($num / self::BASE);
+        }
+        return $str;
+    }
+    public static function decode($str)
+    {
+        $num = 0;
+        $len = strlen($str);
+        for ($i = 0; $i < $len; $i++) {
+            $num = $num * self::BASE + strpos(self::ALPHABET, $str[$i]);
+        }
+        return $num;
+    }
 
-		$base    = 3;
-		$last    = $this->sql("url")->tableUrl()->field("#max(id)")->limit(0,1)->select();
-		$last    = $last->assoc()['max(id)'];
-		$current = (string)((int)$last + 1);
-		$short   = str_split($current);
-		$count   = sizeof($short);
-
-		if ($count < $base) {
-			for ($i = 0; $i < $base - $count; $i++) {
-				array_unshift($short, '0');
-			}
+    public function post_url()
+	{
+		$url = utility::post('url');
+		if (!$url)
+		{
+			debug::warn(T_("please enter the link!"));
+			return;
 		}
 
-		foreach ($short as $key => $value) {
-			$short[$key] = $chars[$key][(int)$value];
+		// check for this address exist in db
+		$duplicate = $this->sql()->tableUrls()->whereUrl_long($url)->select();
+		if($duplicate->num() > 0)
+		{
+			// url exist and get the id of this url
+			$id = $duplicate->assoc('id');
+		}
+		else
+		{
+			// add the url to database and get the last insert id
+			$qry = $this->sql()->tableUrls()->setUrl_long($url)->insert();
+			$id  = $qry->LAST_INSERT_ID();
 		}
 
-		$short = implode("", $short);
+		$short = $this->encode($id);
+		$this->commit(function($_parm1 = null)
+		{
+			debug::true(T_("Your link is: ") . $this->url('raw') .'/'. $_parm1);
+		}, $short);
 
-		if (utility::post('url') == '') {
-			debug::warn(T_("Please enter the link!"));
-		} else {
-			$query = $this->sql('url')->tableUrl()->setUrl(utility::post('url'))
-			->setShort($short)->setCounter(1);
-
-			$result = $query->insert();
-
-			$this->commit(function($_parm1 = null) {
-				debug::true(T_("Your link is: ") . $this->url('raw') .'/'. $_parm1);
-			}, $short);
-
-			$this->rollback(function() {
-				debug::warn(T_("Try again!"));
-			});	
-		}
+		$this->rollback(function() { debug::warn(T_("Try again!"));});
 	}
 
-	function get_gourl($o){
-		$shortUrl = $o->match->url[0][0];
-		$myQuery = $this->sql('get')->tableUrl()
-		->whereShort($shortUrl)
-		->limit(0, 1)
-		->select();
 
-		$url     = $myQuery->assoc()['url'];
-		$counter = $myQuery->assoc()['counter'] + 1;
+	function get_gourl()
+	{
+		$shortUrl = $this->url('path');
+		// in root dont run this code, fix in controller soon
+		if(!isset($shortUrl) || $shortUrl === 0)
+			return;
+		$id  = $this->decode($shortUrl);
+		$qry = $this->sql()->tableUrls()->whereId($id)->select();
 
-		if ($url != null) {
-			$host = parse_url($url)['host'];
-			$path = parse_url($url)['path'];
+		if($qry->num() === 1)
+		{
+			//exist in table. get long url and clicks++
+			$datarow = $qry->assoc();
+			$url     = $datarow['url_long'];
+			$qry = $this->sql()->tableUrls()->setUrl_clicks($datarow['url_clicks']+1)->whereID($id)->update();
 
-			$this->redirector()->set_domain($host)->set_url($path);	
+			// check if url from valid source redirect to it
+			if ($url != null)
+			{
+				$host = parse_url($url)['host'];
+				$path = parse_url($url)['path'];
+
+				$this->redirector()->set_domain($host)->set_url($path);
+			}
+		}
+		else
+		{
+			// this url does not exist in table. show 404 error
+			
 		}
 	}
 }
