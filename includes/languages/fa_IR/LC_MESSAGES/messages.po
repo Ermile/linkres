@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ermile\n"
-"POT-Creation-Date: 2015-04-12 03:00+0330\n"
-"PO-Revision-Date: 2015-04-12 03:04+0330\n"
+"POT-Creation-Date: 2015-04-12 03:06+0330\n"
+"PO-Revision-Date: 2015-04-12 03:07+0330\n"
 "Last-Translator: Javad Evazzadeh <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile\n"
 "Language: fa_IR\n"
@@ -124,6 +124,10 @@ msgstr "کاربر"
 #: ../../../.././includes/cls/database/linkres/translation.php:39
 msgid "nickname"
 msgstr "نام مستعار"
+
+#: ../../../.././includes/cls/form/myform.php:9
+msgid "Paste your long URL here"
+msgstr "لینک طولانی خود را اینجا بگذارید"
 
 #: ../../../.././includes/cls/form/myform.php:15
 msgid "Shorten it"

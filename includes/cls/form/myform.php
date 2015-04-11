@@ -6,7 +6,7 @@ class myform extends \lib\form
 	function __construct()
 	{
 		$this->url = $this->make('text')->name('url')->label('')
-						->pl('Paste your long URL here')
+						->pl(T_('Paste your long URL here'))
 						->autocomplete('off')
 						// ->desc('All data are public and can be accessed by anyone.')
 						->required()->tabindex(1)->autofocus();
