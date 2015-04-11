@@ -3,6 +3,7 @@ namespace content\home;
 
 class view extends \mvc\view{
 	public function config(){
+		$myform                 = $this->createform('.myform');
 		$form = $this->createform('@linkres.url');
 		$form->add('submit', 'submit')->value("Go");
 	}

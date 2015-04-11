@@ -1,11 +1,15 @@
 {%extends display.mvc%}
+{%block header_def%}{%endblock%}
 
+{%block content_def%}
+<div class="center">
+  <form class="ajx form row" method="post" data-clear2 data-delay='5000'>
+{{forms.make(form['myform'])}}
+  </form>
 
-{%block body_def%}
-<form method="post">
-  {{forms.make(form.url)}}
-</form>
 <div class="xxx">
   <div class="xx"></div>
+</div>
+	
 </div>
 {%endblock%}
