@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2015 at 12:43 PM
+-- Generation Time: Apr 12, 2015 at 12:25 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -76,8 +76,9 @@ CREATE TABLE IF NOT EXISTS `urls` (
 `id` int(10) unsigned NOT NULL,
   `url_long` varchar(999) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `url_clicks` int(10) unsigned NOT NULL DEFAULT '0',
+  `url_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `url_status` enum('enable','disable','expire','hidden') CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT 'enable',
-  `url_created` datetime NOT NULL
+  `url_special` bit(1) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=117649 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

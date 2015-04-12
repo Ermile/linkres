@@ -61,7 +61,7 @@ class model extends \mvc\model
 		else
 		{
 			// add the url to database and get the last insert id
-			$qry = $this->sql()->tableUrls()->setUrl_long($url)->insert();
+			$qry = $this->sql()->tableUrls()->setUrl_long($url)->setUrl_created(date('Y-m-d H:i:s'))->insert();
 			$id  = $qry->LAST_INSERT_ID();
 		}
 
