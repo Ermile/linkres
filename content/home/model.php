@@ -34,8 +34,7 @@ class model extends \mvc\model
 		{
 			$url = $this->url('raw') .'/'. $_short;
 			$this->redirector()->set_domain()->set_url($_short.'-');
-			debug::msg('long', $url);
-			debug::true(T_("Your link is: ") . $url);
+			// debug::true(T_("Your link is: ") . $url);
 		}, $short);
 
 		$this->rollback(function() { debug::warn(T_("Try again!"));});

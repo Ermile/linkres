@@ -6,7 +6,7 @@
 
 {%block content_def%}
 <div class="center" data-xhr="center">
- <form class="ajx form row" id="form-shortener" method="post" data-clear2 data-delay='5000'>
+ <form class="ajx form row" id="form-shortener" method="post" data-delay='5000'>
 {{forms.make(form['myform'])}}
  </form>
 
@@ -20,7 +20,7 @@
    </div>
    <div id="qrcode"></div>
 
-  <div class="form hint--bottom" id="shorturl" data-hint='{%trans "Press Ctrl+C to copy"%}'>
+  <div class="form hint--top" id="shorturl" data-hint='{%trans "Press Ctrl+C to copy"%}'>
    <input type="text" readonly="readonly" tabindex="3" value="http://{{url.raw}}/{{datarow.url_short}}"></input>
   </div>
    <a id='fullurl' href='{{datarow.url_long}}' >{{datarow.url_long}}</a>
