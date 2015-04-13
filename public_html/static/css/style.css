@@ -2,6 +2,22 @@ body {color:#eee;background-color: #E0E0E0;background-image: url('../images/bg.j
 .center{position: relative;min-width:280px;max-width:500px;width:450px;margin: 0 auto;margin-top:50px;}
 
 form #url{width:100%;direction:ltr;}
+#home #details{display:none;}
+#details{position:relative;height:130px;margin-top:20px;font-size:15px;font-size:1.5rem;}
+
+
+#shorturl{width:100%}
+#shorturl input{direction: ltr; text-align: center;width:100%;}
+#shorturl #desc{display:none;}
+
+#fullurl{display: block;font-size:0.8em;margin:0 10px;}
+#url_data{float:left;margin:0 10px;margin-top:30px;}
+#clicks{height:100px;float:left; width:125px;margin:0 auto;}
+#clicks .value{font-size:3em;text-align:center;}
+#clicks .label{text-align:center;}
+
+/*#qrcode{margin:0 auto;display:block;width:100px;height:100px;position: absolute;top:0;right: 20px}*/
+#qrcode{width:100px;height:100px;float:right; margin-right: 10px}
 
 ::-webkit-input-placeholder{text-align:center;}
 :-moz-placeholder{text-align:center;}

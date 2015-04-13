@@ -1,15 +1,32 @@
 {%extends display.mvc%}
 {%block header_def%}{%endblock%}
+{%block foot_js%}
+ <script src="{{url.static}}js/jquery.qrcode-0.11.0.min.js"></script>
+{%endblock%}
 
 {%block content_def%}
-<div class="center">
-  <form class="ajx form row" method="post" data-clear2 data-delay='5000'>
+<div class="center" data-xhr="center">
+ <form class="ajx form row" id="form-shortener" method="post" data-clear2 data-delay='5000'>
 {{forms.make(form['myform'])}}
-  </form>
+ </form>
 
-<div class="xxx">
-  <div class="xx"></div>
-</div>
+ <div id="details" data-xhr="details">
+  <div id='url_data'>
+   <div id='timeago'>Created {{datarow.url_timeago}}</div>
+  </div>
+   <div id="clicks">
+    <div class="value">{{datarow.url_clicks}}</div>
+    <div class="label">{%trans "Click"%}</div>
+   </div>
+   <div id="qrcode"></div>
+
+  <div class="form hint--bottom" id="shorturl" data-hint='{%trans "Press Ctrl+C to copy"%}'>
+   <input type="text" readonly="readonly" tabindex="3" value="http://{{url.raw}}/{{datarow.url_short}}"></input>
+  </div>
+   <a id='fullurl' href='{{datarow.url_long}}' >{{datarow.url_long}}</a>
+
+
+ </div>
 	
 </div>
 {%endblock%}

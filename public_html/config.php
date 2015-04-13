@@ -46,6 +46,22 @@ define('CommingSoon', false);
 define('MultiLanguage', true);
 
 /**
+ * Defaultlanguage
+ * Default: 'en_US'
+ * 
+ * If your site support multi language then you can fix default language for visitors
+ */
+define('DefaultLanguage', 'en_US');
+
+/**
+ * MainAccount
+ * Default: true
+ *
+ * all service is managed via main account service.
+ */
+define('MainAccount', true);
+
+/**
  * SaveAsCookie
  * Default: true
  *
