@@ -4,7 +4,12 @@ route('*', function() {
 		// in home page
 		$('html').click(function(e)
 		{
-			$('form #url').focus();
+			if(!$(e.target).is('#langlist') )
+			{
+				$('form #url').focus();
+				console.log(2);
+			}
+			
 		});
 		console.log(1);
 	}
@@ -13,13 +18,13 @@ route('*', function() {
 		// in details page
 		$('html').click(function(e)
 		{
-			if(!$(e.target).is('#url') )
+			if(!$(e.target).is('#url') && !$(e.target).is('#langlist') )
 			{
 				$('#shorturl input').select();
 				console.log(3);
 			}
 
 		});
-		console.log(2);
+		console.log(4);
 	}
 });
