@@ -1,10 +1,10 @@
 {%extends display.mvc%}
-{%block header_def%}{%endblock%}
+{%block header%}{%endblock%}
 {%block foot_js%}
  <script src="{{url.static}}js/jquery.qrcode-0.11.0.min.js"></script>
 {%endblock%}
 
-{%block content_def%}
+{%block content%}
 <div class="center" data-xhr="center">
  <form class="ajx form row" id="form-shortener" method="post" data-delay='5000'>
 {{forms.make(form['myform'])}}
