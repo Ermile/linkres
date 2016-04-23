@@ -15,4 +15,12 @@
  /** MySQL database password */
  define("db_pass", 'Ermile@#$1233');
 
+/**
+ * For developers: debugging mode.
+ * Default: False
+ *
+ * Change this to true to enable the display of notices during development.
+ * It is strongly recommended that in developement condition use DEBUG in the development environments.
+ */
+define('DEBUG', true);
 ?>
