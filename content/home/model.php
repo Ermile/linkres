@@ -29,7 +29,7 @@ class model extends \mvc\model
 			$id  = $qry->LAST_INSERT_ID();
 		}
 
-		$short = ShortURL::encode($id);
+		$short = shortURL::encode($id);
 		$this->commit(function($_short)
 		{
 			$url = $this->url('raw') .'/'. $_short;
@@ -45,7 +45,7 @@ class model extends \mvc\model
 	{
 		$shortUrl = $this->url('path');
 
-		$id  = ShortURL::decode($shortUrl);
+		$id  = shortURL::decode($shortUrl);
 		$qry = $this->sql()->tableUrls()->whereId($id)->select();
 
 		if($qry->num() === 1)
@@ -76,7 +76,7 @@ class model extends \mvc\model
 		$shortUrl = $this->url('path');
 		$shortUrl = substr($shortUrl, 0, -1);
 
-		$id  = ShortURL::decode($shortUrl);
+		$id  = shortURL::decode($shortUrl);
 		$qry = $this->sql()->tableUrls()->whereId($id)->select();
 
 		if($qry->num() !== 1)
