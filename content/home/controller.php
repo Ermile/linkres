@@ -6,10 +6,10 @@ class controller extends \mvc\controller
 {
 	function _route()
 	{
-		$module = $this->module();
+		$module = \lib\url::module();
 		$this->get('go')->ALL("/^([a-zA-Z0-9]+)$/");
 
-		if(substr($module, -1) == '-' || $module == 'home')
+		if(substr($module, -1) == '-' || $module === null)
 			$this->get()->ALL();
 
 		$this->post('url')->ALL("");
