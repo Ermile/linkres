@@ -8,7 +8,7 @@ class model extends \mvc\model
 {
     public function post_url()
 	{
-		$url = utility::post('url');
+		$url = \lib\request::post('url');
 		if (!$url)
 		{
 			debug::warn(T_("please enter the link!"));
@@ -32,7 +32,7 @@ class model extends \mvc\model
 		$short = shortURL::encode($id);
 		$this->commit(function($_short)
 		{
-			$url = $this->url('raw') .'/'. $_short;
+			$url = \lib\url::site().'/'. $_short;
 			$this->redirector()->set_domain()->set_url($_short.'-');
 			// debug::true(T_("Your link is: ") . $url);
 		}, $short);
@@ -43,7 +43,7 @@ class model extends \mvc\model
 
 	function get_go()
 	{
-		$shortUrl = $this->url('path');
+		$shortUrl = \lib\url::path();
 
 		$id  = shortURL::decode($shortUrl);
 		$qry = $this->sql()->tableUrls()->whereId($id)->select();
@@ -67,13 +67,13 @@ class model extends \mvc\model
 		else
 		{
 			// this url does not exist in table. show 404 error
-			\lib\error::page();
+			\lib\header::status(404, );
 		}
 	}
 
 	function get_details()
 	{
-		$shortUrl = $this->url('path');
+		$shortUrl = \lib\url::path();
 		$shortUrl = substr($shortUrl, 0, -1);
 
 		$id  = shortURL::decode($shortUrl);
@@ -81,7 +81,7 @@ class model extends \mvc\model
 
 		if($qry->num() !== 1)
 		{
-			\lib\error::page();
+			\lib\header::status(404, );
 			return;
 		}
 
