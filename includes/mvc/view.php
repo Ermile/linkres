@@ -6,7 +6,6 @@ class view extends \lib\mvc\view
 	function _construct()
 	{
 		// define default value for global
-		// $this->include->css_main       = false;
 		$this->data->site['title']   = T_("Ermile Shortener");
 		$this->data->site['desc']    = T_("link shortener is a part of ermile project");
 		$this->data->site['slogan']  = T_("we short all:)");
