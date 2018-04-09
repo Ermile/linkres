@@ -6,7 +6,7 @@ class view extends \mvc\view
 {
 	public function config()
 	{
-		$module = \lib\url::module();
+		$module = \dash\url::module();
 		$myform = $this->createform('.myform');
 
 		if(substr($module, -1) == '-')

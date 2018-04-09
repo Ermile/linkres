@@ -32,7 +32,7 @@ class model extends \mvc\model
 		$short = shortURL::encode($id);
 		$this->commit(function($_short)
 		{
-			$url = \lib\url::site().'/'. $_short;
+			$url = \dash\url::site().'/'. $_short;
 			$this->redirector()->set_domain()->set_url($_short.'-');
 			// debug::true(T_("Your link is: ") . $url);
 		}, $short);
@@ -43,7 +43,7 @@ class model extends \mvc\model
 
 	function get_go()
 	{
-		$shortUrl = \lib\url::path();
+		$shortUrl = \dash\url::path();
 
 		$id  = shortURL::decode($shortUrl);
 		$qry = $this->sql()->tableUrls()->whereId($id)->select();
@@ -73,7 +73,7 @@ class model extends \mvc\model
 
 	function get_details()
 	{
-		$shortUrl = \lib\url::path();
+		$shortUrl = \dash\url::path();
 		$shortUrl = substr($shortUrl, 0, -1);
 
 		$id  = shortURL::decode($shortUrl);
