@@ -10,10 +10,10 @@
  define("db_name", 'linkres');
 
  /** MySQL database username */
- define("db_user", 'ermile');
+ define("db_user", '__db_user__');
 
  /** MySQL database password */
- define("db_pass", 'Ermile@#$1233');
+ define("db_pass", '__db_pass__');
 
 /**
  * For developers: debugging mode.
